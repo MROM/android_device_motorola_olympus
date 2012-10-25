@@ -23,16 +23,9 @@
          and effectively disable the "Sim network lock" feature. -->
     <bool name="ignore_sim_network_locked_events">false</bool>
 
-    <!-- Enable the onscreen touch UI for all states of the in-call UI. -->
-    <bool name="allow_incoming_call_touch_ui">true</bool>
-    <bool name="allow_in_call_touch_ui">true</bool>
-
     <bool name="send_mic_mute_to_AudioManager">false</bool>
 
     <!-- Determines if device implements a noise suppression device for in call audio-->
     <bool name="has_in_call_noise_suppression">true</bool>
-
-    <!--CrystalTalk-->
-    <string name="voice_quality_param">motoVoiceQualityConfig</string>
 
 </resources>
