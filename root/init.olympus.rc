@@ -18,6 +18,7 @@ on init
     # battery driver permissions
     mkdir /pds 0755 root root
     mkdir /osh 0000 root root
+    mkdir /vendor 0755 root root
 
 on fs
 # mount mtd partitions
