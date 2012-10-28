@@ -51,7 +51,7 @@ PRODUCT_LOCALES := en_US
 PRODUCT_LOCALES += hdpi
 
 # not exactly xhdpi, but we have enough RAM, why not use it?
-$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+#$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 # copy all kernel modules under the "modules" directory to system/lib/modules
 PRODUCT_COPY_FILES += $(shell \
