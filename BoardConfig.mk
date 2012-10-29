@@ -80,13 +80,13 @@ TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_RECOVERY_IGNORE_BOOTABLES := true
 BOARD_DATA_DEVICE := /dev/block/mmcblk0p16
-BOARD_DATA_FILESYSTEM := ext4
+BOARD_DATA_FILESYSTEM := ext3
 BOARD_DATA_FILESYSTEM_OPTIONS := nosuid,nodev,relatime,barrier=1,noauto_da_alloc
 BOARD_SYSTEM_DEVICE := /dev/block/mmcblk0p12
 BOARD_SYSTEM_FILESYSTEM_OPTIONS := noatime,nodiratime,barrier=1,noauto_da_alloc
-BOARD_SYSTEM_FILESYSTEM := ext4
+BOARD_SYSTEM_FILESYSTEM := ext3
 BOARD_CACHE_DEVICE := /dev/block/mmcblk0p15
-BOARD_CACHE_FILESYSTEM := ext4
+BOARD_CACHE_FILESYSTEM := ext3
 BOARD_CACHE_FILESYSTEM_OPTIONS := nosuid,nodev,relatime,barrier=1,noauto_da_alloc
 BOARD_HAS_PREINSTALL := true
 TARGET_NO_BOOT := false
@@ -113,9 +113,9 @@ WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 BOARD_WLAN_DEVICE           := bcm4329
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4329.ko"
-WIFI_DRIVER_FW_PATH_STA     := "/system/vendor/firmware/fw_bcm4329.bin"
-WIFI_DRIVER_FW_PATH_AP      := "/system/vendor/firmware/fw_bcm4329_apsta.bin"
-WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/vendor/firmware/fw_bcm4329.bin nvram_path=/system/etc/nvram.txt"
+WIFI_DRIVER_FW_PATH_STA     := "/system/bin/fw_bcm4329.bin"
+WIFI_DRIVER_FW_PATH_AP      := "/system/bin/fw_bcm4329_apsta.bin"
+WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/bin/fw_bcm4329.bin nvram_path=/system/etc/nvram.txt"
 WIFI_DRIVER_MODULE_NAME     := "bcm4329"
 WIFI_DRIVER_SOCKET_IFACE    := eth0
 
