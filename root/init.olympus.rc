@@ -37,7 +37,7 @@ on early-boot
     setprop ro.EMPTY_APP_MEM 21000
 
 on fs
-    # Mount /system rw first to give the filesystem a chance to save a checkpoint
+
     mount ext4 /dev/block/mmcblk0p12 /system noatime nodiratime wait ro barrier=1
     mount ext4 /dev/block/mmcblk0p16 /data nosuid nodev noatime nodiratime wait barrier=1 noauto_da_alloc
     mount ext4 /dev/block/mmcblk0p15 /cache nosuid nodev noatime nodiratime wait barrier=1 noauto_da_alloc
@@ -78,7 +78,7 @@ on post-fs-data
     write /data/tmp/bluedroid_ref 0
     chown system system /data/tmp/bluedroid_ref
 
-    # setprop vold.post_fs_data_done 1
+    setprop vold.post_fs_data_done 1
 
 on boot
     chown system /dev/aes1750
@@ -174,11 +174,6 @@ on boot
 
     #parse kernel boot mode info
     exec /system/bin/mot_boot_mode
-
-    # for feature 33302 device encryption
-    mkdir /data/emt
-    chmod 0700 /data/emt
-    exec /system/bin/enc_mgt_tool
 
 on start-charging
     chown mot_accy mot_accy /sys/power/state
