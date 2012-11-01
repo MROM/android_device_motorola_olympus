@@ -49,7 +49,7 @@ ro.product.locale.region=US
 dalvik.vm.dexopt-flags=m=y,u=n
 
 # Default USB Mode
-persist.sys.usb.config=mass_storage
+persist.sys.usb.config=mass_storage,adb
 
 # Vold switchability
 ro.vold.switchablepair=/storage/sdcard1,/storage/sdcard0
@@ -65,3 +65,6 @@ ro.tegra.debug=0
 
 # 1% battery
 persist.sys.one_percent_batt=1
+
+persist.service.adb.enable=1
+persist.sys.root_access=3

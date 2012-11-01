@@ -7,7 +7,7 @@ on early-init
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
     # create mountpoints for storage
-    mkdir /storage 0050 system sdcard_r
+    mkdir /storage 0755 system system
     mkdir /storage/sdcard0 0000 system system
     mkdir /storage/sdcard1 0000 system system
     symlink /storage/sdcard0 /sdcard
@@ -21,7 +21,6 @@ on early-init
     mkdir /storage/usbdisk5 0000 system system
     mkdir /storage/usbdisk6 0000 system system
     mkdir /storage/usbdisk7 0000 system system
-
 
 on init
     mkdir /pds 0755 root root
@@ -38,11 +37,21 @@ on early-boot
     setprop ro.EMPTY_APP_MEM 21000
 
 on fs
-    mount_all /fstab.olympus
+    # Mount /system rw first to give the filesystem a chance to save a checkpoint
+    mount ext4 /dev/block/mmcblk0p12 /system noatime nodiratime wait ro barrier=1
+    mount ext4 /dev/block/mmcblk0p16 /data nosuid nodev noatime nodiratime wait barrier=1 noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p15 /cache nosuid nodev noatime nodiratime wait barrier=1 noauto_da_alloc
+    mount ext4 /dev/block/mmcblk0p13 /osh nodev noatime nodiratime wait barrier=1 noauto_da_alloc
+
     write /proc/apanic /dev/block/mmcblk0p9
     exec /system/bin/logwrapper /system/bin/pds_perm_fix.sh
 
 on post-fs
+
+    # We chown/chmod /data again so because mount is run as root + defaults
+    chown system system /data
+    chmod 0771 /data
+
     chown mot_accy mot_accy /pds/public/battd/batt_offset_data
     chmod 0660 /pds/public/battd/batt_offset_data
     chown mot_accy mot_accy /pds/public/battd/batt_phasing_data
@@ -69,7 +78,7 @@ on post-fs-data
     write /data/tmp/bluedroid_ref 0
     chown system system /data/tmp/bluedroid_ref
 
-    setprop vold.post_fs_data_done 1
+    # setprop vold.post_fs_data_done 1
 
 on boot
     chown system /dev/aes1750
@@ -165,6 +174,11 @@ on boot
 
     #parse kernel boot mode info
     exec /system/bin/mot_boot_mode
+
+    # for feature 33302 device encryption
+    mkdir /data/emt
+    chmod 0700 /data/emt
+    exec /system/bin/enc_mgt_tool
 
 on start-charging
     chown mot_accy mot_accy /sys/power/state
