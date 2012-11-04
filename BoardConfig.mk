@@ -62,7 +62,7 @@ OLYMPUS_WIFI_MODULE:
 
 TARGET_KERNEL_MODULES := OLYMPUS_WIFI_MODULE
 
-BOARD_KERNEL_CMDLINE := mem=384M@0M nvmem=128M@384M mem=512M@512M vmalloc=256M video=tegrafb console=none usbcore.old_scheme_first=1 tegraboot=sdmmc tegrapart=mbr:d00:100:800,kpanic:2100:400:800 security=tomoyo mot_prod=1
+#BOARD_KERNEL_CMDLINE := mem=384M@0M nvmem=128M@384M mem=512M@512M vmalloc=256M video=tegrafb console=none usbcore.old_scheme_first=1 tegraboot=sdmmc tegrapart=mbr:d00:100:800,kpanic:2100:400:800 security=tomoyo mot_prod=1
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_PAGE_SIZE := 0x00000800
 
