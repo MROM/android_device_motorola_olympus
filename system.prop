@@ -9,7 +9,6 @@ rild.libargs=-d /dev/pts/1
 persist.ril.mux.noofchannels=9
 persist.ril.mux.ttydevice=/dev/ttyHS3
 ro.telephony.call_ring.multiple=false
-ro.telephony.call_ring.delay=500
 persist.ril.modem.ttydevice=/dev/ttySPI0
 persist.ril.modem.mode=2
 persist.ril.features=0x2020
@@ -74,9 +73,6 @@ persist.sys.root_access=3
 # Power Save tweaks
 ro.ril.disable.power.collapse=1
 pm.sleep_mode=1
-
-# Ringing Will Start After 500ms
-ro.telephony.call_ring.delay=500
 
 # Increase Performance
 debug.performance.tuning=1
@@ -176,3 +172,13 @@ debug.composition.type=gpu
 # debug.egl.profiler=1
 # debug.egl.hw=1
 # persist.sys.ui=1
+
+# Disable blackscreen issue after a call
+# Sensor FDP
+ro.lge.proximity.delay=25
+mot.proximity.delay=0
+mot.proximity.distance=25
+
+#Disable black incoming call screen
+ro.telephony.call_ring.delay=200
+ro.mot.eri.losalret.delay=0
