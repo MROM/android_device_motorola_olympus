@@ -1,4 +1,3 @@
-import init.olympus.usb.rc
 
 on init
     export PHONE_STORAGE /mnt/emmc
@@ -500,7 +499,7 @@ on boot
 	chown system system /data/am2data.db.meta
 
 # Enable ADB
-#   write /dev/usb_device_mode charge_adb
+   write /dev/usb_device_mode charge_adb
 
 # Adjust Android LMK
     write /sys/module/lowmemorykiller/parameters/minfree 3072,4608,7200,11776,17408,21000
