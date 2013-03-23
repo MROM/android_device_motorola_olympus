@@ -50,9 +50,6 @@ PRODUCT_LOCALES := en_US
 # olympus uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
 
-# not exactly xhdpi, but we have enough RAM, why not use it?
-$(call inherit-product, frameworks/base/build/phone-xhdpi-1024-dalvik-heap.mk)
-
 $(call inherit-product-if-exists, vendor/motorola/olympus/olympus-vendor.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
