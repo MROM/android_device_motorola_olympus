@@ -38,13 +38,13 @@ int enable_adb(void){
 	fclose(fp);
 	
 	if (property_get("persist.service.adb.enable", value, 0)) {
-		LOGD("ADB status is - %s ", value);
+		ALOGD("ADB status is - %s ", value);
 /* property_set with adb enable needed for first launch of system or adb on boot will be disabled*/
 		property_set("persist.service.adb.enable", "1");
 	}
 	
 	if (property_get("persist.service.adb.enable", value, "1")){
-		LOGD("adb service already enabled");
+		ALOGD("adb service already enabled");
 	}
 	return 0;
 }
@@ -69,7 +69,7 @@ int boot_reason_charge_only(void)
     memset(powerup_reason, 0, 32);
 
     pwrup_rsn = strstr(data, "POWERUPREASON");
-    LOGD("MOTO : pwr_rsn = %s", pwrup_rsn);
+    ALOGD("MOTO : pwr_rsn = %s", pwrup_rsn);
     if (pwrup_rsn) {
         x = strstr(pwrup_rsn, ": ");
         if (x) {
@@ -81,7 +81,7 @@ int boot_reason_charge_only(void)
                 if (n == 31) break;
             }
             powerup_reason[n] = '\0';
-            LOGD("MOTO_PUPD: powerup_reason=%s", powerup_reason);
+            ALOGD("MOTO_PUPD: powerup_reason=%s", powerup_reason);
         }
     }
     if (!strncmp(powerup_reason, MOTO_PU_REASON_CHARGE_ONLY,
@@ -127,7 +127,7 @@ int check_cid_recover_boot(void)
                 if (n == 31) break;
             }
             cid_recover_boot[n] = '\0';
-            LOGD("MOTO_PUPD: cid_recover_boot=%s", cid_recover_boot);
+            ALOGD("MOTO_PUPD: cid_recover_boot=%s", cid_recover_boot);
         }
     }
 
@@ -160,28 +160,28 @@ int check_data_12m(void)
  ********************************************************************/
 int main(int argc, char **argv)
 {
-    LOGD("MOTO_PUPD: mot_boot_mode %d.%d", ver_major, ver_minor);
+    ALOGD("MOTO_PUPD: mot_boot_mode %d.%d", ver_major, ver_minor);
     //enable_adb();
     if (check_cid_recover_boot()){
 
-        LOGD("MOTO_PUPD: check_cid_recover_boot: 1");
+        ALOGD("MOTO_PUPD: check_cid_recover_boot: 1");
         property_set("tcmd.cid.recover.boot", "1");
         property_set("tcmd.suspend", "1");
 
     }else if (boot_reason_charge_only()){
 
-    	LOGD("MOTO_PUPD: boot_reason_charge_only: 1");
+    	ALOGD("MOTO_PUPD: boot_reason_charge_only: 1");
         property_set("sys.chargeonly.mode", "1");
 
     }else if (check_data_12m()){
 
-        LOGD("MOTO_PUPD: mot_boot_mode 12m: 1");
+        ALOGD("MOTO_PUPD: mot_boot_mode 12m: 1");
         property_set("tcmd.12m.test", "1");
         property_set("tcmd.suspend", "1");
 
     }else{
 
-       	LOGD("MOTO_PUPD: mot_boot_mode 12m: 0");
+       	ALOGD("MOTO_PUPD: mot_boot_mode 12m: 0");
        	property_set("tcmd.suspend", "0");
     }
 
