@@ -50,8 +50,8 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_BOOTANIMATION_USE_RGB565 := true
 
 # Inline kernel building config
-TARGET_KERNEL_CONFIG := tegra_olympus_cm10_defconfig
-TARGET_KERNEL_SOURCE := kernel/bn/encore
+TARGET_KERNEL_CONFIG := tegra_olympus_21-03-2013_defconfig
+TARGET_KERNEL_SOURCE := kernel/bn/olympus
 
 #OLYMPUS_WIFI_MODULE:
 #	make -C kernel/motorola/olympus/wifi-module/open-src/src/dhd/linux/ \
