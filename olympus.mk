@@ -53,12 +53,15 @@ PRODUCT_LOCALES += hdpi
 # not exactly xhdpi, but we have enough RAM, why not use it?
 $(call inherit-product, frameworks/base/build/phone-xhdpi-1024-dalvik-heap.mk)
 
+<<<<<<< HEAD
 # copy all kernel modules under the "modules" directory to system/lib/modules
 PRODUCT_COPY_FILES += $(shell \
     find vendor/motorola/olympus/modules -name '*.ko' \
     | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/lib\/modules\/\2/' \
     | tr '\n' ' ')
 
+=======
+>>>>>>> epinter/jellybean
 $(call inherit-product-if-exists, vendor/motorola/olympus/olympus-vendor.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)

@@ -120,8 +120,6 @@ EOF
 
 LOCAL_PATH:= \$(call my-dir)
 
-EOF
-
 for APK in `ls ../../../${OUTDIR}/packages/*apk`; do
     apkname=`basename $APK`
     modulename=`echo $apkname|sed -e 's/\.apk$//gi'`
