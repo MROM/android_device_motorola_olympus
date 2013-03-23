@@ -31,7 +31,7 @@ int enable_adb(void){
 	fp = fopen("/dev/usb_device_mode", "w");
 
 	if (!fp) {
-		LOGE("Error at opening file");
+		ALOGE("Error at opening file");
 		return 0;
 	}
 	fprintf(fp, "msc_adb");
