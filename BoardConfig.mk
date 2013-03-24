@@ -49,25 +49,20 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_BOOTANIMATION_USE_RGB565 := true
 
-# Inline kernel building config
+# Kernel configuration for inline building
 TARGET_KERNEL_CONFIG := tegra_olympus_21-03-2013_defconfig
-TARGET_KERNEL_SOURCE := kernel/motorola/olympus
+TARGET_PREBUILT_KERNEL := vendor/motorola/olympus/kernel
 
 #OLYMPUS_WIFI_MODULE:
 #	make -C kernel/motorola/olympus/wifi-module/open-src/src/dhd/linux/ \
 #	ARCH="arm" CROSS_COMPILE="arm-eabi-" LINUXSRCDIR=kernel/olympus/ \
 #	LINUXBUILDDIR=$(KERNEL_OUT) \
-#	LINUXVER=$(shell strings "$(KERNEL_OUT)/vmlinux"|grep '2.6.*MB860'|tail -n1) \
+#	LINUXVER=$(shell cat $(KERNEL_OUT)/include/config/kernel.release ) \
 #	BCM_INSTALLDIR="$(KERNEL_MODULES_OUT)"
 
 #TARGET_KERNEL_MODULES := OLYMPUS_WIFI_MODULE
 
-# Kernel command line for d00 tegra
-#BOARD_KERNEL_CMDLINE := mem=384M@0M nvmem=128M@384M mem=512M@512M vmalloc=256M video=tegrafb console=none usbcore.old_scheme_first=1 tegraboot=sdmmc tegrapart=mbr:d00:100:800,kpanic:2100:400:800 security=tomoyo mot_prod=1
-
-# Kernel command line for 1100 tegra
-#BOARD_KERNEL_CMDLINE := mem=384M@0M nvmem=128M@384M mem=512M@512M vmalloc=256M video=tegrafb console=none usbcore.old_scheme_first=1 tegraboot=sdmmc tegrapart=mbr:1100:100:800,kpanic:2500:400:800 security=tomoyo mot_prod=1
-
+BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_PAGE_SIZE := 0x00000800
 
@@ -118,9 +113,9 @@ WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 BOARD_WLAN_DEVICE           := bcm4329
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4329.ko"
-WIFI_DRIVER_FW_PATH_STA     := "/system/etc/firmware/fw_bcm4329.bin"
-WIFI_DRIVER_FW_PATH_AP      := "/system/etc/firmware/fw_bcm4329_apsta.bin"
-WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/firmware/fw_bcm4329.bin nvram_path=/system/etc/nvram.txt"
+WIFI_DRIVER_FW_PATH_STA     := "/system/vendor/firmware/fw_bcm4329.bin"
+WIFI_DRIVER_FW_PATH_AP      := "/system/vendor/firmware/fw_bcm4329_apsta.bin"
+WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/vendor/firmware/fw_bcm4329.bin nvram_path=/system/etc/nvram.txt"
 WIFI_DRIVER_MODULE_NAME     := "bcm4329"
 WIFI_DRIVER_SOCKET_IFACE    := eth0
 
@@ -139,8 +134,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_stora
 BOARD_USE_MOTO_DOCK_HACK := true
 
 BOARD_USES_AUDIO_LEGACY := true
-#COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DMOTOROLA_UIDS -DICS_CAMERA_BLOB
-COMMON_GLOBAL_CFLAGS += -DMOTOROLA_UIDS
+COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DMOTOROLA_UIDS -DICS_CAMERA_BLOB
 
 BOARD_MOBILEDATA_INTERFACE_NAME := "ppp0"
 

@@ -50,6 +50,9 @@ PRODUCT_LOCALES := en_US
 # olympus uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
 
+# not exactly xhdpi, but we have enough RAM, why not use it?
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+
 $(call inherit-product-if-exists, vendor/motorola/olympus/olympus-vendor.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
@@ -105,7 +108,28 @@ PRODUCT_COPY_FILES += \
     device/motorola/olympus/keylayout/usb_keyboard_102_en_us.kl:system/usr/keylayout/Motorola_Bluetooth_Wireless_Keyboard.kl \
     device/motorola/olympus/keychars/usb_keyboard_102_en_us.kcm.bin:system/usr/keychars/Motorola_Bluetooth_Wireless_Keyboard.kcm.bin
 
+# Permission files
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+#debug
+PRODUCT_PROPERTY_OVERRIDES +=persist.sys.root_access=3 \
+               ro.debuggable=1 \
+               ro.secure=0 \
+               ro.allow.mock.location=1 \
+               persist.service.adb.enable=1
 
 PRODUCT_NAME := generic_olympus
 PRODUCT_DEVICE := olympus
