@@ -1,8 +1,0 @@
-[
-  {
-    "repository": "CyanogenMod-Atrix/android_kernel_motorola_olympus.git",
-    "target_path": "kernel/motorola/olympus"
-    "revision": "jellybean"
-  }
-]
-
